@@ -19,6 +19,7 @@ public class Test {
         System.out.println(":"+N(l,DuracionCiclo(CantidadPedido(k,d,h),d)));
         System.out.println("Le:"+Le(l,N(l,DuracionCiclo(CantidadPedido(k,d,h),d)),DuracionCiclo(CantidadPedido(k,d,h),d)));
         System.out.println("Punto de reorden:"+PuntoReorden(Le(l,N(l,DuracionCiclo(CantidadPedido(k,d,h),d)),DuracionCiclo(CantidadPedido(k,d,h),d)),d));
+        System.out.println("Costo total del inventario: "+CostoTotal(k,CantidadPedido(k,d,h),h));
     }
     
     //Primer método para sacar la cantidad de pedido que se debe hacer
@@ -41,8 +42,13 @@ public class Test {
         return l-n(to);
     }
 
-    //Quinnto método para punto de reorden
+    //Quinto método para punto de reorden
     public static double PuntoReorden (double le, double d) {
         return le*d;
+    }
+
+    //Sexto  método TCU
+    public static double CostoTotal (double k, double y, double h) {
+        return k/y + h(y/2);
     }
 }
