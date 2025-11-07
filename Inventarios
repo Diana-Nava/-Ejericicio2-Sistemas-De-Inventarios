@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Test {
 
     public static void main(String[] args) {
+        //Solicitud al usuario de los datos
         Scanner reader =new Scanner(System.in);
         System.out.println("Ingrese el  valor de K: ");
         double k=reader.nextDouble();
@@ -12,14 +13,17 @@ public class Test {
         double h=reader.nextDouble();
         System.out.println("Ingrese el valor de L ");
         double l=reader.nextDouble();
+        //Muestreo en pantalla de los resultados finales 
         System.out.println("Cantidad de pedido: "+CantidadPedido(k,d,h));
         System.out.println("Duración del ciclo: "+DuracionCiclo(CantidadPedido(k,d,h),d));
     }
     
+    //Primer método para sacar la cantidad de pedido que se debe hacer
     public static double CantidadPedido (double k, double d, double h) {
         return Math.sqrt((2*200*500)/(h));
     }
     
+    //Segundo método para la duración del ciclo
     public static double DuracionCiclo (double y, double d) {
         return y/d;
     }
