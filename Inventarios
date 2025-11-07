@@ -12,15 +12,16 @@ public class Test {
         double h=reader.nextDouble();
         System.out.println("Ingrese el valor de L ");
         double l=reader.nextDouble();
+        System.out.println("Cantidad de pedido: "+CantidadPedido(k,d,h));
+        System.out.println("Duración del ciclo: "+DuracionCiclo(CantidadPedido(k,d,h),d));
     }
     
     public static double CantidadPedido (double k, double d, double h) {
         return Math.sqrt((2*200*500)/(h));
     }
     
-    public static double DuracionCiclo (double CantidadPedido, double d) {
-        return CantidadPedido/d;
+    public static double DuracionCiclo (double y, double d) {
+        return y/d;
     }
-    
     
 }
