@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class Test {
+
+    public static void main(String[] args) {
+        Scanner reader =new Scanner(System.in);
+        System.out.println("Ingrese el  valor de K: ");
+        double k=reader.nextDouble();
+        System.out.println("Ingrese el valor de D: ");
+        double d= reader.nextDouble();
+        System.out.println("Ingrese el valor de H: ");
+        double h=reader.nextDouble();
+        System.out.println("Ingrese el valor de L ");
+        double l=reader.nextDouble();
+    }
+    
+    public static double CantidadPedido (double k, double d, double h) {
+        return Math.sqrt((2*200*500)/(h));
+    }
+    
+    public static double DuracionCiclo (double CantidadPedido, double d) {
+        return CantidadPedido/d;
+    }
+    
+    
+}
