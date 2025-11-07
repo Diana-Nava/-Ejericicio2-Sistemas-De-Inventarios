@@ -17,7 +17,8 @@ public class Test {
         System.out.println("Cantidad de pedido: "+CantidadPedido(k,d,h));
         System.out.println("Duración del ciclo: "+DuracionCiclo(CantidadPedido(k,d,h),d));
         System.out.println(":"+N(l,DuracionCiclo(CantidadPedido(k,d,h),d)));
-        System.out.println("Le:"+PuntoReorden(l,N(l,DuracionCiclo(CantidadPedido(k,d,h),d)),DuracionCiclo(CantidadPedido(k,d,h),d)));
+        System.out.println("Le:"+Le(l,N(l,DuracionCiclo(CantidadPedido(k,d,h),d)),DuracionCiclo(CantidadPedido(k,d,h),d)));
+        System.out.println("Punto de reorden:"+PuntoReorden(Le(l,N(l,DuracionCiclo(CantidadPedido(k,d,h),d)),DuracionCiclo(CantidadPedido(k,d,h),d)),d));
     }
     
     //Primer método para sacar la cantidad de pedido que se debe hacer
@@ -38,5 +39,10 @@ public class Test {
     //Cuarto método para Le (tampoco recuedo su nombre)
     public static double Le (double l, double n, double to) {
         return l-n(to);
+    }
+
+    //Quinnto método para punto de reorden
+    public static double PuntoReorden (double le, double d) {
+        return le*d;
     }
 }
