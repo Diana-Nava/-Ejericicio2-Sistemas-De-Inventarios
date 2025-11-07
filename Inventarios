@@ -16,6 +16,7 @@ public class Test {
         //Muestreo en pantalla de los resultados finales 
         System.out.println("Cantidad de pedido: "+CantidadPedido(k,d,h));
         System.out.println("Duración del ciclo: "+DuracionCiclo(CantidadPedido(k,d,h),d));
+        System.out.println(":"+N(l,DuracionCiclo(CantidadPedido(k,d,h),d)));
     }
     
     //Primer método para sacar la cantidad de pedido que se debe hacer
@@ -28,4 +29,13 @@ public class Test {
         return y/d;
     }
     
+    //Tercer método paraa la n (no me acuerdo de como se llama, preguntar después)
+    public static double N (double l, double to) {
+        return l/to;
+    }
+
+    //Cuarto método para punto de reorden 
+    public static double PuntoReorden (double ) {
+
+    }
 }
