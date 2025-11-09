@@ -3,8 +3,16 @@ import java.util.Scanner;
 public class Test {
 
     public static void main(String[] args) {
-        //Solicitud al usuario de los datos
         Scanner reader =new Scanner(System.in);
+        System.out.println("\n \t Inventarios");
+        System.out.println("Que tipo de inventario desea hacer? ");
+        System.out.println("1. Sistema de inventario normal ");
+        System.out.println("2. Sistema de inventario con descuento");
+        System.out.println("Opcion: ");
+        byte option=reader.nextByte;
+        switch (option) {
+            case 1 -> {
+                //Solicitud al usuario de los datos
         System.out.println("Ingrese el  valor de K: ");
         double k=reader.nextDouble();
         System.out.println("Ingrese el valor de D: ");
@@ -13,14 +21,14 @@ public class Test {
         double h=reader.nextDouble();
         System.out.println("Ingrese el valor de L ");
         double l=reader.nextDouble();
+        System.out.println("Su inventario posee descuentos");
         //Muestreo en pantalla de los resultados finales 
         System.out.println("Cantidad de pedido: "+CantidadPedido(k,d,h));
         System.out.println("Duración del ciclo: "+DuracionCiclo(CantidadPedido(k,d,h),d));
         System.out.println(":"+N(l,DuracionCiclo(CantidadPedido(k,d,h),d)));
         System.out.println("Le:"+Le(l,N(l,DuracionCiclo(CantidadPedido(k,d,h),d)),DuracionCiclo(CantidadPedido(k,d,h),d)));
         System.out.println("Punto de reorden:"+PuntoReorden(Le(l,N(l,DuracionCiclo(CantidadPedido(k,d,h),d)),DuracionCiclo(CantidadPedido(k,d,h),d)),d));
-        System.out.println("Costo total del inventario: "+CostoTotal(k,CantidadPedido(k,d,h),h));
-    }
+        System.out.println("Costo total del inventario: "+CostoTotal(k,CantidadPedido(k,d,h),h)
     
     //Primer método para sacar la cantidad de pedido que se debe hacer
     public static double CantidadPedido (double k, double d, double h) {
@@ -50,5 +58,11 @@ public class Test {
     //Sexto  método TCU
     public static double CostoTotal (double k, double y, double h) {
         return k/y + h(y/2);
+    }
+    }
+            case 2 -> {
+                
+            } 
+        }
     }
 }
