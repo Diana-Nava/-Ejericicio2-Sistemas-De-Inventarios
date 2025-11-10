@@ -3,7 +3,7 @@ import java.util.Scanner;
 class Conditions {
     double i; // porcentaje de descuento (en decimal)
     int c;    // costo por unidad
-    int h;    // costo de almacenamiento
+    double h;    // costo de almacenamiento
     int d;    // demanda
     int k;    // cantidad de pedido
 }
@@ -59,13 +59,26 @@ public class Test {
                     arrayConditions[j].c = reader.nextInt();
                     System.out.println("Ingrese el porcentaje de descuento (en decimal): ");
                     arrayConditions[j].i = reader.nextDouble();
-                    System.out.println("Ingrese el CA: "); // No recuerdo como se llama, preguntar después
-                    arrayConditions[j].h = reader.nextInt();
+                    System.out.println("Ingrese el costo de almacenamiento: "); // Era lo mismo que otro, se me había olvidado
+                    arrayConditions[j].h = reader.nextDouble();
                     System.out.println("Ingrese la demanda: ");
                     arrayConditions[j].d = reader.nextInt();
                     System.out.println("Ingrese la cantidad de pedido: ");
                     arrayConditions[j].k = reader.nextInt();
                 }
+                // Calcular CTU para cada condición y encontrar la mínima
+                double CTU = Double.MAX_VALUE;
+                int bestOption = -1;
+                for (int j = 0; j < condition; j++) {
+                    double y = CantidadPedido(arrayConditions[j].k, arrayConditions[j].d, arrayConditions[j].h);
+                    double ctu = CTUConDescuento(arrayConditions[j].c, arrayConditions[j].d, arrayConditions[j].k, y, arrayConditions[j].h);
+                    System.out.println("Condición " + (j + 1) + " - Cantidad de pedido: " + y + " - CTU: " + ctu);
+                    if (ctu < CTU) {
+                        CTU = ctu;
+                        bestOption = j + 1;
+                    }
+                }
+                System.out.println("Le conviene usar la opción: " + bestOption + " con CTU: " + minCTU);
             }
             default -> {
                 System.out.println("Opción no válida.");
