@@ -1,68 +1,105 @@
 import java.util.Scanner;
 
+class Conditions {
+    double i; // porcentaje de descuento (en decimal)
+    int c;    // costo por unidad
+    int h;    // costo de almacenamiento
+    int d;    // demanda
+    int k;    // cantidad de pedido
+}
+
 public class Test {
 
     public static void main(String[] args) {
-        Scanner reader =new Scanner(System.in);
+        Scanner reader = new Scanner(System.in);
         System.out.println("\n \t Inventarios");
         System.out.println("Que tipo de inventario desea hacer? ");
         System.out.println("1. Sistema de inventario normal ");
         System.out.println("2. Sistema de inventario con descuento");
         System.out.println("Opcion: ");
-        byte option=reader.nextByte;
+        byte option = reader.nextByte();
         switch (option) {
             case 1 -> {
-                //Solicitud al usuario de los datos
-        System.out.println("Ingrese el  valor de K: ");
-        double k=reader.nextDouble();
-        System.out.println("Ingrese el valor de D: ");
-        double d= reader.nextDouble();
-        System.out.println("Ingrese el valor de H: ");
-        double h=reader.nextDouble();
-        System.out.println("Ingrese el valor de L ");
-        double l=reader.nextDouble();
-        System.out.println("Su inventario posee descuentos");
-        //Muestreo en pantalla de los resultados finales 
-        System.out.println("Cantidad de pedido: "+CantidadPedido(k,d,h));
-        System.out.println("Duración del ciclo: "+DuracionCiclo(CantidadPedido(k,d,h),d));
-        System.out.println(":"+N(l,DuracionCiclo(CantidadPedido(k,d,h),d)));
-        System.out.println("Le:"+Le(l,N(l,DuracionCiclo(CantidadPedido(k,d,h),d)),DuracionCiclo(CantidadPedido(k,d,h),d)));
-        System.out.println("Punto de reorden:"+PuntoReorden(Le(l,N(l,DuracionCiclo(CantidadPedido(k,d,h),d)),DuracionCiclo(CantidadPedido(k,d,h),d)),d));
-        System.out.println("Costo total del inventario: "+CostoTotal(k,CantidadPedido(k,d,h),h)
-    
-    //Primer método para sacar la cantidad de pedido que se debe hacer
-    public static double CantidadPedido (double k, double d, double h) {
-        return Math.sqrt((2*200*500)/(h));
-    }
-    
-    //Segundo método para la duración del ciclo
-    public static double DuracionCiclo (double y, double d) {
-        return y/d;
-    }
-    
-    //Tercer método paraa la n (no me acuerdo de como se llama, preguntar después)
-    public static double N (double l, double to) {
-        return l/to;
-    }
-
-    //Cuarto método para Le (tampoco recuedo su nombre)
-    public static double Le (double l, double n, double to) {
-        return l-n(to);
-    }
-
-    //Quinto método para punto de reorden
-    public static double PuntoReorden (double le, double d) {
-        return le*d;
-    }
-
-    //Sexto  método TCU
-    public static double CostoTotal (double k, double y, double h) {
-        return k/y + h(y/2);
-    }
-    }
-            case 2 -> {
+                // Solicitud al usuario de los datos
+                System.out.println("Ingrese el valor de K: ");
+                double k = reader.nextDouble();
+                System.out.println("Ingrese el valor de D: ");
+                double d = reader.nextDouble();
+                System.out.println("Ingrese el valor de H: ");
+                double h = reader.nextDouble();
+                System.out.println("Ingrese el valor de L: ");
+                double l = reader.nextDouble();
+                // Muestreo en pantalla de los resultados finales
+                double cantidadPedido = CantidadPedido(k, d, h);
+                double duracionCiclo = DuracionCiclo(cantidadPedido, d);
+                double n = N(l, duracionCiclo);
+                double le = Le(l, n, duracionCiclo);
+                double puntoReorden = PuntoReorden(le, d);
+                double costoTotal = CostoTotal(k, cantidadPedido, h);
                 
-            } 
+                System.out.println("Cantidad de pedido: " + cantidadPedido);
+                System.out.println("Duración del ciclo: " + duracionCiclo);
+                System.out.println("Numero de ciclos: " + n);
+                System.out.println("Le: " + le);
+                System.out.println("Punto de reorden: " + puntoReorden);
+                System.out.println("Costo total del inventario: " + costoTotal);
+            }
+            case 2 -> {
+                System.out.println("Ingrese la cantidad de condiciones que tiene: ");
+                byte condition = reader.nextByte();
+                Conditions[] arrayConditions = new Conditions[condition];
+                for (int j = 0; j < condition; j++) {
+                    arrayConditions[j] = new Conditions();
+                }
+                
+                System.out.println("Llenado del arreglo...");
+                for (int j = 0; j < condition; j++) {
+                    System.out.println("Condición [" + (j + 1) + "]");
+                    System.out.println("Ingrese el costo por unidad: ");
+                    arrayConditions[j].c = reader.nextInt();
+                    System.out.println("Ingrese el porcentaje de descuento (en decimal): ");
+                    arrayConditions[j].i = reader.nextDouble();
+                    System.out.println("Ingrese el CA: "); // No recuerdo como se llama, preguntar después
+                    arrayConditions[j].h = reader.nextInt();
+                    System.out.println("Ingrese la demanda: ");
+                    arrayConditions[j].d = reader.nextInt();
+                    System.out.println("Ingrese la cantidad de pedido: ");
+                    arrayConditions[j].k = reader.nextInt();
+                }
+            }
+            default -> {
+                System.out.println("Opción no válida.");
+            }
         }
+    }
+
+    // Primer método para sacar la cantidad de pedido que se debe hacer
+    public static double CantidadPedido(double k, double d, double h) {
+        return Math.sqrt((2 * k * d) / h);
+    }
+
+    // Segundo método para la duración del ciclo
+    public static double DuracionCiclo(double y, double d) {
+        return y / d;
+    }
+
+    // Tercer método para número de ciclos en cierta cantidad de días (ya me acordé)
+    public static double N(double l, double to) {
+        return Math.floor(l / to);
+    }
+
+    // Cuarto método para Le (de este aún no se)
+    public static double Le(double l, double n, double to) {
+        return l - n * to;
+    }
+
+    // Quinto método para punto de reorden
+    public static double PuntoReorden(double le, double d) {
+        return le * d;
+    }
+
+    // Sexto método para costo total
+    public static double CostoTotal(double k, double y, double h) {
+        return (k / y) + (h * (y / 2));
     }
 }
