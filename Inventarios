@@ -96,6 +96,18 @@ public class Test {
                     double le = Le(l, n, duracionCiclo);
                     double puntoReorden = PuntoReorden(le, best.d);
                     double costoTotal = CostoTotal(best.k, cantidadPedido, best.h);
+                    // Imprimir resultados
+                    System.out.println("Cantidad de pedido: " + cantidadPedido);
+                    System.out.println("Duración del ciclo: " + duracionCiclo);
+                    System.out.println("Numero de ciclos: " + n);
+                    System.out.println("Le: " + le);
+                    System.out.println("Punto de reorden: " + puntoReorden);
+                    System.out.println("Costo total del inventario: " + costoTotal);
+                } else if (subOption == 2) {
+                    // Finalizar programa
+                } else {
+                    System.out.println("Opción no válida.");
+                }
             }
             default -> {
                 System.out.println("Opción no válida.");
