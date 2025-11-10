@@ -79,6 +79,23 @@ public class Test {
                     }
                 }
                 System.out.println("Le conviene usar la opción: " + bestOption + " con CTU: " + minCTU);
+
+                // Nuevas opciones después de mostrar el mejor CTU
+                System.out.println("Que desea hacer ahora?");
+                System.out.println("1. Calcular detalles completos del inventario (necesita L)");
+                System.out.println("2. Finalizar programa");
+                byte subOption = reader.nextByte();
+                if (subOption == 1) {
+                    System.out.println("Ingrese el valor de L: ");
+                    double l = reader.nextDouble();
+                    // Usar los valores de la mejor condición
+                    Conditions best = arrayConditions[bestOption - 1];
+                    double cantidadPedido = CantidadPedido(best.k, best.d, best.h);
+                    double duracionCiclo = DuracionCiclo(cantidadPedido, best.d);
+                    double n = N(l, duracionCiclo);
+                    double le = Le(l, n, duracionCiclo);
+                    double puntoReorden = PuntoReorden(le, best.d);
+                    double costoTotal = CostoTotal(best.k, cantidadPedido, best.h);
             }
             default -> {
                 System.out.println("Opción no válida.");
